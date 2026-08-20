@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Superseded drafts
+_archive/
+**/_archive/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Course administration — see note in README before un-ignoring.
+# These contain internal NTU approval records and colleagues' contact details.
+Annex A New OBTL PH6725.pdf
+Outline/*.docx
