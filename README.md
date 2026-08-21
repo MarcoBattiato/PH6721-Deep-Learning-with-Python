@@ -9,6 +9,9 @@ Mathematical Sciences. Trimester 2, AY2026-2027. 12 classes × 3 hours.
 
 ## Running the notebooks
 
+> **New to the course? Start with [Getting Started](GettingStarted.md)** — step-by-step
+> instructions for opening and running the notebooks, for Windows and Mac.
+
 Every notebook runs in **Google Colab** with no local installation. Click the
 *Open in Colab* badge at the top of any notebook, then choose `Runtime → Run all`.
 
