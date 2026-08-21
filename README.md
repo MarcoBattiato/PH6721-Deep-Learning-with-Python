@@ -1,7 +1,7 @@
-# PH6725 — Artificial Intelligence for Science
+# PH6721 — Deep Learning with Python
 
-Course materials for **PH6725**, Nanyang Technological University, School of Physical and
-Mathematical Sciences. 12 classes × 3 hours.
+Course materials for **PH6721**, Nanyang Technological University, School of Physical and
+Mathematical Sciences. Trimester 2, AY2026-2027. 12 classes × 3 hours.
 
 **Instructor:** Marco Battiato — marco.battiato.teaching@gmail.com
 
@@ -17,7 +17,7 @@ downloaded or uploaded first.
 
 To run locally instead, you need Python 3.8 or newer with `numpy`, `pandas`, `matplotlib`,
 `scikit-learn` and `seaborn`. Later classes additionally need `torch`, `umap-learn`, `xgboost`
-and `rdkit`; those notebooks install what they need in a guarded cell.
+and `torch-geometric`; those notebooks install what they need in a guarded cell.
 
 ## Contents
 
@@ -29,10 +29,23 @@ and `rdkit`; those notebooks install what they need in a guarded cell.
 | `Class_1/01A-IntroductionToAIForScience` | What AI, ML and DL are; the ML workflow |
 | `Class_1/01B-PythonScientificComputing` | NumPy, vectorization, broadcasting |
 | `Class_1/01C-DataHandlingAndVisualization` | pandas, exploratory data analysis, plotting |
-| **Class 2 — Regression, Classification and Scientific Programming** | |
+| **Class 2 — Learning from Data** | |
 | `Class_2/02A-RegressionAndSupervisedLearning` | Supervised learning framework; linear regression |
 
-The full 12-class plan is in [`Outline/CourseOutline_v2.md`](Outline/CourseOutline_v2.md).
+The full 12-class plan is in [`Outline/CourseOutline.md`](Outline/CourseOutline.md).
+
+## Course structure
+
+| Classes | Theme |
+|---|---|
+| 1–3 | Foundations: scientific Python, learning from data, generalization and metrics |
+| 4–5 | Classical machine learning: trees, ensembles, SVMs, kernels, clustering |
+| 6 | Dimensionality reduction: PCA, t-SNE, UMAP |
+| 7–9 | Deep learning foundations: neural networks, training, representation learning |
+| 10–12 | Modern architectures: CNNs, transformers, foundation models and graph networks |
+
+The early classes build the vocabulary and the evaluation discipline that the deep learning
+material depends on. Neural networks begin in Class 7.
 
 ## Working with the notebooks
 
@@ -42,7 +55,6 @@ solution in. Edits you make in Colab are **not** saved back to this repository �
 
 ## A note on the course administration files
 
-The approved OBTL and the outline `.docx` files are excluded from this repository by
-`.gitignore`. They contain internal approval records and colleagues' contact details, and should
-not be published. Remove those lines from `.gitignore` only if this repository is private and you
-are certain that is appropriate.
+The approved OBTL and the outline source documents are excluded from this repository by
+`.gitignore`, which ignores all PDF and Word files. They contain internal approval records and
+colleagues' contact details, and should not be published.
