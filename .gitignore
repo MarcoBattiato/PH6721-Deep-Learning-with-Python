@@ -12,6 +12,11 @@ _archive/
 # Local tooling config (keeps the public course repo clean)
 .claude/
 
+# Wooclap question bank — graded in-class questions, must NOT be published.
+# Class participation is 10% of the grade; publishing the questions or answers
+# would let students prepare the specific items instead of the concepts.
+Wooclap/
+
 # Python
 __pycache__/
 *.pyc
