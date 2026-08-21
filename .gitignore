@@ -9,6 +9,9 @@
 _archive/
 **/_archive/
 
+# Local tooling config (keeps the public course repo clean)
+.claude/
+
 # Python
 __pycache__/
 *.pyc
