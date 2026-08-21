@@ -20,5 +20,7 @@ venv/
 
 # Course administration — see note in README before un-ignoring.
 # These contain internal NTU approval records and colleagues' contact details.
-Annex A New OBTL PH6725.pdf
-Outline/*.docx
+# Matched broadly on purpose: no admin PDF or Word file should reach a public repo.
+*.pdf
+*.docx
+*.doc
