@@ -138,8 +138,10 @@ The runtime disconnected — this happens after roughly 90 minutes idle, or 12 h
 Nothing is broken; run the notebook again from the top.
 
 **The notebook asks for input and nothing happens.**
-Some cells in the Python crash course ask you to type an answer. A small text box appears under
-the cell — click into it, type, and press <kbd>Enter</kbd>. Until you do, the notebook waits.
+One cell in the Python crash course (the one teaching `input()`) waits for you to type something.
+A small text box appears under the cell — click into it, type, and press <kbd>Enter</kbd>. Until
+you do, the notebook waits, and `Run all` will look like it has hung. That is the only such cell
+in the course.
 
 **My NTU Google account will not open Colab.**
 Some NTU accounts have Colab restricted. Sign in with a personal Gmail account instead; there is
