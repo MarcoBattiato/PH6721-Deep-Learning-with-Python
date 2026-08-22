@@ -35,6 +35,7 @@ and `torch-geometric`; those notebooks install what they need in a guarded cell.
 | `Class_1/01C-DataHandlingAndVisualization` | pandas, exploratory data analysis, plotting |
 | **Class 2 — Learning from Data** | |
 | `Class_2/02A-RegressionAndSupervisedLearning` | Supervised learning framework; linear regression |
+| `Class_2/02B-ClassificationAndLogisticRegression` | Classification, logistic regression, cross-entropy |
 
 The full 12-class plan is in [`Outline/CourseOutline.md`](Outline/CourseOutline.md).
 

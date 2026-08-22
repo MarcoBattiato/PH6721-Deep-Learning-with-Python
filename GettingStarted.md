@@ -101,6 +101,7 @@ Each link opens that notebook directly in Colab.
 | | Notebook | |
 |---|---|---|
 | `02A` | [Regression and Supervised Learning](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/Class_2/02A-RegressionAndSupervisedLearning.ipynb) | Fitting models, least squares, residuals |
+| `02B` | [Classification and Logistic Regression](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/Class_2/02B-ClassificationAndLogisticRegression.ipynb) | Predicting categories, decision boundaries |
 
 Later classes appear on the course page as we reach them.
 
