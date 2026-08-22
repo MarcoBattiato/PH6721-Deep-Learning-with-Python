@@ -120,7 +120,7 @@ ordering between blocks 4 and 5, so only the indicative schedule changes.
 |---|---|---|
 | H1 | `03A` | Regression metrics (MSE, MAE, R²); classification metrics; confusion matrix, precision, recall, F1, ROC, AUC; class imbalance |
 | H2 | `03B` | Polynomial regression → the bias-variance tradeoff, developed as one continuous narrative |
-| H3 | `03C` | L1 and L2 regularization; ridge and lasso; feature selection; hyperparameter search |
+| H3 | `03C` | **Feature scaling** (why the coefficient size must be comparable); L1 and L2 regularization; ridge and lasso; feature selection; hyperparameter search |
 
 ### Part II — Classical Machine Learning (Classes 4–5)
 
@@ -155,7 +155,7 @@ ordering between blocks 4 and 5, so only the indicative schedule changes.
 | | Notebook | Content |
 |---|---|---|
 | H1 | `07A` | Perceptron; limits of linear models; MLPs; activation functions; universal approximation |
-| H2 | `07B` | Loss surfaces; gradient descent; **backpropagation**; the chain rule and computational graphs |
+| H2 | `07B` | Loss surfaces; gradient descent (and why badly scaled features make it slow); **backpropagation**; the chain rule and computational graphs |
 | H3 | `07C` | PyTorch: tensors, autograd, modules; a first network trained end to end |
 
 #### Class 8 — Training Deep Networks `[wk 9 → 8]`
