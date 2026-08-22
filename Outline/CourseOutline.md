@@ -241,6 +241,31 @@ For correction at the next revision. None affect teaching.
 - **Key takeaways** and **Optional preparation for the next notebook** closing cells
 - Recurring prompts on using an LLM to write and check scientific code
 
+### Cells that must ship without output
+
+Executing a notebook stores every result, which silently gives away the answer to any cell the
+student is meant to work out first. Such cells carry a **tag** in their metadata, and the markdown
+cell immediately above carries the matching **banner**:
+
+| Tag | Banner in the markdown above | Why |
+|---|---|---|
+| `predict` | **Think about your answer before running this cell.** | The student should predict the result first |
+| `run-fresh` | **Run this cell yourself. Its output is not stored in the notebook.** | A stored output would mislead — a setup check must prove *their* environment works |
+
+The tag is what the tooling acts on; the banner is what the student reads. Neither substitutes for
+the other, and a validator reports any cell that has one without the other, so the two cannot
+drift apart.
+
+**This runs after every execution**, because executing re-stores the outputs:
+
+```
+python notebook_markers.py clear     # clear tagged outputs, strip execution timings, validate
+python notebook_markers.py check     # validate only; exits non-zero on any mismatch
+```
+
+The same step strips the per-cell `execution` timing metadata that nbconvert injects, which
+otherwise changes on every run and makes notebook diffs unreadable.
+
 ## Technical targets
 
 - Notebooks must run on **Google Colab** (per the OBTL's Technology-Enhanced Learning section)
