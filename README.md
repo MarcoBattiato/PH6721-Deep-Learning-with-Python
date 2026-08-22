@@ -26,8 +26,9 @@ and `torch-geometric`; those notebooks install what they need in a guarded cell.
 
 | Notebook | Topic |
 |---|---|
-| `Classes/00-test_python_jupyter` | Check that Python and Jupyter work |
-| `Classes/01P-IntroToPython` | Python crash course (optional, for those new to Python) |
+| **Class 0 — before the course** | |
+| `Class_0/00A-StartHere` | **Start here.** Setup check, and a diagnostic telling you whether you need `00B` |
+| `Class_0/00B-IntroToPython` | Python primer, for those who need it |
 | **Class 1 — Introduction to AI for Science and Scientific Python** | |
 | `Class_1/01A-IntroductionToAIForScience` | What AI, ML and DL are; the ML workflow |
 | `Class_1/01B-PythonScientificComputing` | NumPy, vectorization, broadcasting |

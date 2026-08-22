@@ -34,6 +34,9 @@ All the material lives at
 Bookmark it. This page is always the current version — when a notebook is corrected or a new
 class is added, it appears here automatically and you do not need a new link.
 
+**Start with `Classes/Class_0/00A-StartHere`.** It takes ten minutes, confirms that Colab works
+for you, and tells you whether you need the Python primer before the first class.
+
 **3. Click into a notebook, then click the badge.**
 Open the `Classes` folder, then the class you want, then the notebook file. GitHub shows the
 notebook as a static page — readable, but nothing runs. At the very top is an **Open in Colab**
@@ -78,12 +81,12 @@ message is expected, not an error.
 
 Each link opens that notebook directly in Colab.
 
-### Setup and Python refresher
+### Before Class 1 — start here
 
 | | Notebook | |
 |---|---|---|
-| `00` | [Check your setup](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/00-test_python_jupyter.ipynb) | Confirm Python and Jupyter are working |
-| `01P` | [Python crash course](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/01P-IntroToPython.ipynb) | Optional — start here if Python is new to you |
+| `00A` | [Start Here](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/Class_0/00A-StartHere.ipynb) | Ten minutes: check Colab works, and find out whether you need `00B` |
+| `00B` | [Introduction to Python](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/Class_0/00B-IntroToPython.ipynb) | Python primer. Work through it if `00A` says you should |
 
 ### Class 1 · Introduction and Scientific Python
 
