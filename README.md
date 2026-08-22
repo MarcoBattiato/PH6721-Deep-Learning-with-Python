@@ -36,6 +36,7 @@ and `torch-geometric`; those notebooks install what they need in a guarded cell.
 | **Class 2 — Learning from Data** | |
 | `Class_2/02A-RegressionAndSupervisedLearning` | Supervised learning framework; linear regression |
 | `Class_2/02B-ClassificationAndLogisticRegression` | Classification, logistic regression, cross-entropy |
+| `Class_2/02C-Generalization` | Train/test, cross-validation, data leakage |
 
 The full 12-class plan is in [`Outline/CourseOutline.md`](Outline/CourseOutline.md).
 
