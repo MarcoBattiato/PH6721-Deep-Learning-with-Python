@@ -266,6 +266,23 @@ python notebook_markers.py check     # validate only; exits non-zero on any mism
 The same step strips the per-cell `execution` timing metadata that nbconvert injects, which
 otherwise changes on every run and makes notebook diffs unreadable.
 
+### Section numbers are an API
+
+Notebooks cite one another by section number — `02A` §8.4, or a bare §6.1 within a notebook — and
+`00B`'s symbol index is one long table of such citations. Renumbering or retitling a section
+silently breaks every reference to it, and a reader only finds out by following one.
+
+```
+python check_section_refs.py check   # every citation resolves; exits non-zero otherwise
+python check_section_refs.py list     # the sections each notebook defines
+```
+
+It recognises the four forms already in use (`02A` §8.4, `02A` section 8.4, §6.1, section 9.4) in
+backticks or `<code>` tags. A bare number means the current notebook, falling back to any notebook
+named in the same cell — which is what makes `00A`'s question-to-section table resolve against
+`00B`. A citation to a notebook the outline plans but that is not written yet is reported as a
+note, not a failure, so forward references such as `02B`'s pointer to `03C` are allowed.
+
 ## Technical targets
 
 - Notebooks must run on **Google Colab** (per the OBTL's Technology-Enhanced Learning section)
