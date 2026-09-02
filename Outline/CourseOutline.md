@@ -113,7 +113,7 @@ ordering between blocks 4 and 5, so only the indicative schedule changes.
 | H2 | `02B` | Binary classification; logistic regression; decision boundaries; cross-entropy loss |
 | H3 | `02C` | Train/validation/test; cross-validation; **data leakage**; overfitting and underfitting; reproducibility |
 
-**Status: `02A` built.**
+**Status: built.**
 
 #### Class 3 — Bias-Variance Tradeoff, Regularization and Metrics `[wk 3]`
 | | Notebook | Content |

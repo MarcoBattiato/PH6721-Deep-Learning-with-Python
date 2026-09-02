@@ -48,8 +48,13 @@ def code_of(path):
 
 
 def sections_of(path):
-    """Every numbered section heading in one notebook."""
-    found = set()
+    """Every numbered section heading in one notebook, and any number used twice.
+
+    A repeated number makes every citation of it ambiguous, and the resolution
+    check cannot see that: the number exists, so the citation "resolves" — to
+    two different places.
+    """
+    found, seen = set(), []
     for c in json.load(open(path))["cells"]:
         if c["cell_type"] != "markdown":
             continue
@@ -57,7 +62,11 @@ def sections_of(path):
             m = HEADING.match(line)
             if m:
                 found.add(m.group(1))
-    return found
+                seen.append((m.group(1), line.strip()))
+    duplicates = {}
+    for number, line in seen:
+        duplicates.setdefault(number, []).append(line)
+    return found, {n: v for n, v in duplicates.items() if len(v) > 1}
 
 
 def citations(text):
@@ -126,7 +135,9 @@ def check(path, index, planned, forward):
 
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "check"
-    index = {code_of(p): sections_of(p) for p in notebooks()}
+    scanned = {code_of(p): sections_of(p) for p in notebooks()}
+    index = {k: v[0] for k, v in scanned.items()}
+    repeated = {k: v[1] for k, v in scanned.items() if v[1]}
     # Notebooks the outline plans but which are not written yet: a reference
     # forward to one of those is intentional, not a broken link.
     outline = os.path.join(ROOT, "Outline", "CourseOutline.md")
@@ -144,6 +155,9 @@ def main():
     failed = 0
     for p in notebooks():
         problems, count = check(p, index, planned, forward)
+        for number, lines in sorted(repeated.get(code_of(p), {}).items()):
+            problems.append(f"section {number} is used {len(lines)} times: "
+                            + " / ".join(l[:44] for l in lines))
         status = "OK" if not problems else f"{len(problems)} PROBLEM(S)"
         print(f"  {os.path.basename(p):48s} refs={count:>3}  {status}")
         for pr in problems:
