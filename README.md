@@ -32,7 +32,8 @@ and `torch-geometric`; those notebooks install what they need in a guarded cell.
 | **Class 1 — Introduction to AI for Science and Scientific Python** | |
 | `Class_1/01A-IntroductionToAIForScience` | What AI, ML and DL are; the ML workflow |
 | `Class_1/01B-PythonScientificComputing` | NumPy, vectorization, broadcasting |
-| `Class_1/01C-DataHandlingAndVisualization` | pandas, exploratory data analysis, plotting |
+| `Class_1/01C-DataHandling` | pandas, loading data, inspecting, missing values, summaries |
+| `Class_1/01D-DataVisualization` | distributions, relationships, groups, correlation, pitfalls |
 | **Class 2 — Learning from Data** | |
 | `Class_2/02A-RegressionAndSupervisedLearning` | Supervised learning framework; linear regression |
 | `Class_2/02B-ClassificationAndLogisticRegression` | Classification, logistic regression, cross-entropy |

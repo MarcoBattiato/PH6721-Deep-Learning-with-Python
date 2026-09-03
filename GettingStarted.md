@@ -94,7 +94,8 @@ Each link opens that notebook directly in Colab.
 |---|---|---|
 | `01A` | [Introduction to AI for Science](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/Class_1/01A-IntroductionToAIForScience.ipynb) | What AI, ML and deep learning actually are |
 | `01B` | [Python and Scientific Computing](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/Class_1/01B-PythonScientificComputing.ipynb) | NumPy, vectorization, broadcasting |
-| `01C` | [Data Handling and Visualization](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/Class_1/01C-DataHandlingAndVisualization.ipynb) | pandas, exploring data, plotting |
+| `01C` | [Data Handling with pandas](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/Class_1/01C-DataHandling.ipynb) | pandas, loading and inspecting data |
+| `01D` | [Data Visualization and Correlation](https://colab.research.google.com/github/MarcoBattiato/PH6721-Deep-Learning-with-Python/blob/main/Classes/Class_1/01D-DataVisualization.ipynb) | plots, groups, correlation |
 
 ### Class 2 · Learning from Data
 

@@ -102,7 +102,8 @@ ordering between blocks 4 and 5, so only the indicative schedule changes.
 |---|---|---|
 | H1 | `01A` | What AI, ML and DL are; ML as a toolbox; inductive bias; supervised, unsupervised and representation learning; the ML workflow |
 | H2 | `01B` | Jupyter; NumPy arrays, indexing, slicing, shapes; vectorization; broadcasting |
-| H3 | `01C` | pandas; loading data; dataset anatomy; missing values; summaries; distributions, relationships, groups; correlation |
+| H3 | `01C` | pandas; loading data; dataset anatomy; missing values; summaries |
+| H3 | `01D` | distributions, relationships, groups; correlation; a mini case study; common pitfalls |
 
 **Status: built.**
 
