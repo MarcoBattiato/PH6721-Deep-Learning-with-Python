@@ -123,6 +123,8 @@ ordering between blocks 4 and 5, so only the indicative schedule changes.
 | H2 | `03B` | Polynomial regression → the bias-variance tradeoff, developed as one continuous narrative |
 | H3 | `03C` | **Feature scaling** (why the coefficient size must be comparable); L1 and L2 regularization; ridge and lasso; feature selection; hyperparameter search |
 
+**Status: `03A` built.**
+
 ### Part II — Classical Machine Learning (Classes 4–5)
 
 #### Class 4 — Decision Trees, Random Forests and Gradient Boosting `[wk 4]`

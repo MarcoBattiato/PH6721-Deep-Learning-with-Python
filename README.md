@@ -38,6 +38,8 @@ and `torch-geometric`; those notebooks install what they need in a guarded cell.
 | `Class_2/02A-RegressionAndSupervisedLearning` | Supervised learning framework; linear regression |
 | `Class_2/02B-ClassificationAndLogisticRegression` | Classification, logistic regression, cross-entropy |
 | `Class_2/02C-Generalization` | Train/test, cross-validation, data leakage |
+| **Class 3 — Metrics, Bias-Variance and Regularization** | |
+| `Class_3/03A-Metrics` | RMSE, MAE, R²; confusion matrix, precision, recall, F1, ROC, AUC; imbalance |
 
 The full 12-class plan is in [`Outline/CourseOutline.md`](Outline/CourseOutline.md).
 
