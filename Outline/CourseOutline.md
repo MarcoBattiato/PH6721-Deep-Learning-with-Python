@@ -3,7 +3,7 @@
 **Course outline** — derived from the approved OBTL (`PH6721 - Annex A.pdf`, approved 16-07-2026).
 
 12 classes × 3 hours of content (39 contact hours). Trimester 2, AY2026-2027.
-Delivery: 3 Jupyter notebooks per class, one per hour (`NNA`, `NNB`, `NNC`).
+Delivery: 3 Jupyter notebooks per class, one per hour (`NNA`, `NNB`, `NNC`), except where an hour's material is split across two (`01C` and `01D`).
 
 ---
 
@@ -103,7 +103,7 @@ ordering between blocks 4 and 5, so only the indicative schedule changes.
 | H1 | `01A` | What AI, ML and DL are; ML as a toolbox; inductive bias; supervised, unsupervised and representation learning; the ML workflow |
 | H2 | `01B` | Jupyter; NumPy arrays, indexing, slicing, shapes; vectorization; broadcasting |
 | H3 | `01C` | pandas; loading data; dataset anatomy; missing values; summaries |
-| H3 | `01D` | distributions, relationships, groups; correlation; a mini case study; common pitfalls |
+| H3 (cont.) | `01D` | distributions, relationships, groups; correlation; a mini case study; common pitfalls |
 
 **Status: built.**
 
