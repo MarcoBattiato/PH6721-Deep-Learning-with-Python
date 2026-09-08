@@ -29,3 +29,7 @@ venv/
 *.pdf
 *.docx
 *.doc
+
+# Internal analysis notes — not course material, not for students.
+# Remove this line if you decide the analysis should be versioned publicly.
+Analysis/
