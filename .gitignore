@@ -33,3 +33,10 @@ venv/
 # Internal analysis notes — not course material, not for students.
 # Remove this line if you decide the analysis should be versioned publicly.
 Analysis/
+
+# Build and validation scripts — my tooling, not course material.
+# Kept on disk (they run before every commit) but not published.
+tools/
+
+# Material cut from a class, kept for reference only. Not for students.
+discarded/
