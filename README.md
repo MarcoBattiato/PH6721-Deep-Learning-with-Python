@@ -42,6 +42,8 @@ and `torch-geometric`; those notebooks install what they need in a guarded cell.
 | `Class_3/03A-Metrics` | RMSE, MAE, R²; confusion matrix, precision, recall, F1, ROC, AUC; imbalance |
 | `Class_3/03B-BiasAndVariance` | Bias, variance, irreducible error; why the U-curve has its shape |
 | `Class_3/03C-Regularization` | Feature scaling; ridge and lasso; coefficient paths; hyperparameter search |
+| **Class 4 — Trees and Ensembles** | |
+| `Class_4/04A-DecisionTrees` | Recursive partitioning; impurity and information gain; depth and pruning |
 
 The full 12-class plan is in [`Outline/CourseOutline.md`](Outline/CourseOutline.md).
 
