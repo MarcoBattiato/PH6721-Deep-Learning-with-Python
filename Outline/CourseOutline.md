@@ -154,6 +154,8 @@ Class 1 remains over its three-hour budget after the split. That is a separate p
 | H2 | `04B` | Random forests: bagging, ensembles, feature importance and its pitfalls |
 | H3 | `04C` | Gradient boosting; XGBoost; when boosting beats deep learning on tabular scientific data |
 
+**Status: `04A` and `04B` built.**
+
 #### Class 5 — Support Vector Machines, Kernel Methods and Clustering `[wk 5]`
 | | Notebook | Content |
 |---|---|---|
