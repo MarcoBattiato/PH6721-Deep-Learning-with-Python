@@ -77,6 +77,26 @@ This preserves every topic and every ILO mapping, and produces a coherent progre
 networks, then how to train them, then what they learn. The Course Content section imposes no
 ordering between blocks 4 and 5, so only the indicative schedule changes.
 
+**Class 1 is delivered in four notebooks rather than three.**
+
+The approved delivery is one notebook per contact hour. Class 1's third hour — data handling and
+visualization — was written as a single notebook and came to 33 subsections and roughly 150 minutes
+of material, which is neither teachable in an hour nor navigable as a reference afterwards. It is
+split at the point where no section refers across the boundary:
+
+| Hour | Approved shape | This outline |
+|---|---|---|
+| 3 | one notebook, `01C` | **`01C` — pandas, loading, anatomy, missing values, summaries** |
+| 3 | — | **`01D` — distributions, relationships, groups, correlation, pitfalls** |
+
+No content is added or dropped and no ILO mapping changes; the hour's material is the same material
+in two files. The split is recorded here rather than left silent because the *"one notebook per
+hour"* convention is otherwise load-bearing — `NNA`/`NNB`/`NNC` is how every other class is
+addressed, and `01D` is the one exception to it.
+
+Class 1 remains over its three-hour budget after the split. That is a separate problem, tracked in
+`Analysis/Timing.md`, and it is not solved by how the material is filed.
+
 ### Notes on scope
 
 - The course title emphasises deep learning, while the approved Course Content mandates a
