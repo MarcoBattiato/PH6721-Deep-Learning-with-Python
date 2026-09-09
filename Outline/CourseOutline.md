@@ -97,6 +97,20 @@ addressed, and `01D` is the one exception to it.
 Class 1 remains over its three-hour budget after the split. That is a separate problem, tracked in
 `Analysis/Timing.md`, and it is not solved by how the material is filed.
 
+**`04A` teaches one impurity measure, not two.**
+
+The Class 4 row above originally read *"recursive partitioning, entropy, information gain,
+pruning"*. `04A` uses the Gini index throughout and does not mention entropy at all.
+
+The comparison was written, measured and then cut. It is a technical aside about an implementation
+detail of a method that is not the course's subject, and its conclusion is that the choice does not
+matter: the two criteria rank a pair of splits differently in about 2% of cases, and the difference
+is invisible in accuracy. It cost teaching time it could not repay, and its likely effect on a
+student was uncertainty about which measure to use. Nothing in the OBTL's Course Content requires
+a particular impurity measure — block 3 asks for decision trees — so no mandated content is lost.
+
+The material is kept, unpublished, at `discarded/04A-Discarded-GiniVsEntropy.ipynb`.
+
 ### Notes on scope
 
 - The course title emphasises deep learning, while the approved Course Content mandates a
@@ -150,7 +164,7 @@ Class 1 remains over its three-hour budget after the split. That is a separate p
 #### Class 4 — Decision Trees, Random Forests and Gradient Boosting `[wk 4]`
 | | Notebook | Content |
 |---|---|---|
-| H1 | `04A` | Decision trees: recursive partitioning, entropy, information gain, pruning |
+| H1 | `04A` | Decision trees: recursive partitioning, impurity, information gain, pruning |
 | H2 | `04B` | Random forests: bagging, ensembles, feature importance and its pitfalls |
 | H3 | `04C` | Gradient boosting; XGBoost; when boosting beats deep learning on tabular scientific data |
 

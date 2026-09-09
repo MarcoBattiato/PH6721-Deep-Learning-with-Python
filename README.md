@@ -44,6 +44,7 @@ and `torch-geometric`; those notebooks install what they need in a guarded cell.
 | `Class_3/03C-Regularization` | Feature scaling; ridge and lasso; coefficient paths; hyperparameter search |
 | **Class 4 — Trees and Ensembles** | |
 | `Class_4/04A-DecisionTrees` | Recursive partitioning; impurity and information gain; depth and pruning |
+| `Class_4/04B-RandomForests` | Bagging; decorrelating the trees; out-of-bag scoring; feature importance |
 
 The full 12-class plan is in [`Outline/CourseOutline.md`](Outline/CourseOutline.md).
 
