@@ -35,7 +35,7 @@ Schedule. One deliberate departure from the Planned Schedule is documented below
 | 4 | Curse of dimensionality | 6A |
 | 4 | Principal component analysis | 6A |
 | 4 | Nonlinear dimensionality reduction (t-SNE, UMAP) | 6B, 6C |
-| 4 | Similarity measures | 9A |
+| 4 | Similarity measures | **5A** (the metric, where the methods first need it) and **9A** (cosine similarity in embedding spaces) |
 | 4 | Autoencoders, latent representations | 9B |
 | 4 | Contrastive learning, embeddings, feature learning | 9C |
 | 5 | Perceptrons, multilayer networks, activation functions | 7A |
@@ -46,16 +46,17 @@ Schedule. One deliberate departure from the Planned Schedule is documented below
 | 5 | Regularization methods for deep networks | 8C |
 | 6 | Image representations, convolutions, pooling, feature maps | 10A, 10B |
 | 6 | Modern CNN architectures | 10C |
-| 6 | Scientific, medical, astronomical imaging | 10C |
+| 6 | Scientific, medical, astronomical **and materials-science** imaging | 10C |
 | 7 | Sequential data | 11A |
 | 7 | Recurrent neural networks, LSTMs | 11A |
 | 7 | Attention, self-attention, positional encoding | 11B |
-| 7 | Transformer architectures | 11C |
+| 7 | Transformer architectures **for sequence and language modeling** | 11C, with tokens/vocabulary/embeddings and the next-token objective in 12A |
 | 8 | Pretraining, fine-tuning, transfer learning | 12A |
 | 8 | Foundation models, multimodal learning | 12A |
-| 9 | Graph-structured data, GNNs, message passing | 12B |
-| 9 | Applications to molecules, materials, biological systems | 12B |
-| 10 | Method selection across data modalities; course synthesis | 12C |
+| 8 | **Applications of large-scale pretrained models to scientific domains** | 12A |
+| 9 | Graph-structured data, GNNs, message passing, **graph convolutions** | 12B |
+| 9 | Applications to molecules, materials, biological systems, **interaction networks** | 12B |
+| 10 | **AI for scientific discovery**: method selection across data modalities, model evaluation, real-world applications; course synthesis | 12C |
 
 ### Departure from the Planned Schedule
 
@@ -120,8 +121,17 @@ The material is kept, unpublished, at `discarded/04A-Discarded-GiniVsEntropy.ipy
 - Isomap, locally linear embedding and Laplacian eigenmaps are **not** required by this OBTL
   (Week 6 names only PCA, t-SNE and UMAP). They appear briefly as context in 6B rather than as
   taught methods.
-- Tokenization, BERT and a dedicated NLP class are **not** in this OBTL. Sequence modelling is
-  covered under block 7 without a language-processing focus.
+- A **dedicated NLP class** is not in this OBTL, and BERT is not taught as an architecture. But
+  block 7's wording is *"transformer architectures for sequence and language modeling"*, and
+  language modelling cannot be stated without a token, a vocabulary, an embedding table and a
+  next-token objective. Those are taught in `12A`, where they are needed anyway: "pretraining" is
+  meaningless until the student knows what objective is being pretrained on. A free second payoff —
+  word-embedding geometry is the canonical demonstration that a learned space has metric structure,
+  which is what `09A` is about.
+- The OBTL's block 9 phrase *"interaction networks"* sits inside an **application** list —
+  "molecules, materials, biological systems, and interaction networks" — so it is read here as a
+  data domain (protein–protein interaction networks, reaction networks), not as the Battaglia et al.
+  architecture. `12B` satisfies it with a named example rather than a second architecture.
 - K-nearest neighbours is not mandated. It is retained briefly in 5A as the simplest way to
   introduce distance-based reasoning before support vector machines.
 
@@ -165,17 +175,42 @@ The material is kept, unpublished, at `discarded/04A-Discarded-GiniVsEntropy.ipy
 | | Notebook | Content |
 |---|---|---|
 | H1 | `04A` | Decision trees: recursive partitioning, impurity, information gain, pruning |
-| H2 | `04B` | Random forests: bagging, ensembles, feature importance and its pitfalls |
-| H3 | `04C` | Gradient boosting; XGBoost; when boosting beats deep learning on tabular scientific data |
+| H2 | `04B` | Random forests: bagging, ensembles, feature importance and its pitfalls; **extremely randomised trees as a two-line corollary of the decorrelation argument** |
+| H3 | `04C` | Gradient boosting; XGBoost; when boosting beats deep learning on tabular scientific data. **Use `HistGradientBoostingClassifier` as the primary demo** — LightGBM's algorithm, in the Colab base image, and it handles NaNs and categorical columns natively. **Partial dependence and ICE** (one `PartialDependenceDisplay` call), and **SHAP named** if not taught |
+
+> `04C`'s headline claim — *when boosting beats deep learning on tabular data* — is a genuine
+> strength of this course and is made by none of the reference texts. Anchor it to Grinsztajn,
+> Oyallon & Varoquaux (NeurIPS 2022) and Shwartz-Ziv & Armon (2022), or it reads as folklore.
+>
+> `04B` §7 demolishes impurity importance and half-demolishes permutation importance, leaving the
+> student with a *ranking* and no way to ask **how** a feature acts. That is what partial dependence
+> is for, and it is one call.
 
 **Status: `04A` and `04B` built.**
 
 #### Class 5 — Support Vector Machines, Kernel Methods and Clustering `[wk 5]`
 | | Notebook | Content |
 |---|---|---|
-| H1 | `05A` | Distance-based reasoning; k-nearest neighbours; margins and support vectors |
-| H2 | `05B` | Kernel methods; the kernel trick; RBF kernels; kernel ridge regression |
-| H3 | `05C` | Clustering: k-means, hierarchical, DBSCAN; validating clusters; phase discovery and anomaly detection |
+| H1 | `05A` | Distance and the metric (and that distances need scaling, where trees did not); k-nearest neighbours; margins and support vectors; **the soft margin and `C`**; **hinge loss** |
+| H2 | `05B` | Kernel methods; the kernel trick; RBF kernels; kernel ridge regression; **the Gaussian process posterior mean is kernel ridge regression — the new object is the predictive variance** |
+| H3 | `05C` | Clustering: k-means, hierarchical, DBSCAN; **Gaussian mixtures as soft k-means**; choosing k honestly (inertia, silhouette, and that the objective cannot choose it); phase discovery and anomaly detection |
+
+> **Class 5 has a spine, and it is worth stating in the hour:** *learning from distances — the
+> supervised half, then the unsupervised half.* An RBF kernel $\exp(-\gamma\lVert x-x'\rVert^2)$
+> and DBSCAN's $\varepsilon$-ball are the same neighbourhood idea at two scales. Opening `05C` with
+> "now for something different" throws that away.
+>
+> `05A` carries the metric because `05C`'s DBSCAN, `06B`'s t-SNE and `06C`'s UMAP all need it first,
+> and the OBTL's "similarity measures" is mapped to `09A`, three classes too late. `09A` is
+> therefore re-scoped to *cosine similarity in learned embedding spaces*, which is what it is
+> actually for.
+>
+> `05A`'s soft margin and `C` are not optional garnish: without them the SVM is **the only model in
+> the course with no flexibility dial**, breaking a spine built five times over (`02C`'s degree,
+> `03B`, `03C`'s $\alpha$, `04A`'s depth and `ccp_alpha`, `04B`'s `max_features`). Present it as
+> ISLR §9.5 does — *loss + penalty*, hinge where logistic regression uses log loss, same L2 penalty
+> — so it arrives as a variation on `02B` and `03C` rather than as a new machine. That also
+> discharges `03A` §8's promise about SVM scores in the same figure.
 
 > **Midterm — Week 6, covering Classes 1–5** (per Appendix 2).
 
@@ -184,9 +219,9 @@ The material is kept, unpublished, at `discarded/04A-Discarded-GiniVsEntropy.ipy
 #### Class 6 — Dimensionality Reduction: PCA, t-SNE and UMAP `[wk 6]`
 | | Notebook | Content |
 |---|---|---|
-| H1 | `06A` | Curse of dimensionality; the manifold hypothesis; **PCA**: covariance, eigenvectors, explained variance |
+| H1 | `06A` | Curse of dimensionality — **argued through `05A`'s kNN rather than abstractly**; the manifold hypothesis; **PCA**: covariance, eigenvectors, explained variance, **and why the features must be scaled first** (the exact inversion of `04A` §11.1, and a callback to `03C` §2); components are unique only up to sign. **PCA is diagonalising a symmetric positive-semidefinite matrix — normal modes, principal axes of the inertia tensor** |
 | H2 | `06B` | **t-SNE**: neighbour embeddings, perplexity; brief context on Isomap and LLE |
-| H3 | `06C` | **UMAP**; comparing methods; reading embedding plots critically |
+| H3 | `06C` | **UMAP**; comparing methods; reading embedding plots critically. *`umap-learn` is the one dependency in the course with a live numba/numpy conflict risk — give it the `try`/`except` fallback of `01C` §3.2* |
 
 ### Part IV — Deep Learning Foundations (Classes 7–9)
 
@@ -195,20 +230,39 @@ The material is kept, unpublished, at `discarded/04A-Discarded-GiniVsEntropy.ipy
 |---|---|---|
 | H1 | `07A` | Perceptron; limits of linear models; MLPs; activation functions; universal approximation |
 | H2 | `07B` | Loss surfaces; gradient descent (and why badly scaled features make it slow); **backpropagation**; the chain rule and computational graphs |
-| H3 | `07C` | PyTorch: tensors, autograd, modules; a first network trained end to end |
+| H3 | `07C` | PyTorch: tensors, autograd, modules; **`Dataset`/`DataLoader`, mini-batching, device placement**; a first network trained end to end. **Autograd differentiates with respect to *inputs* too** — forces from an energy model, sensitivity, differentiable simulation |
+
+> `07C`'s training loop is an **API**, in the same sense the section numbers are: Classes 8 to 12
+> reuse it verbatim. Mini-batching is a prerequisite for `08A`'s SGD and momentum, and device
+> placement is a prerequisite for anything in Classes 10 to 12 running on Colab at all. It is
+> recorded in *Recurring notebook conventions* below.
 
 #### Class 8 — Training Deep Networks `[wk 9 → 8]`
 | | Notebook | Content |
 |---|---|---|
-| H1 | `08A` | Optimizers: SGD, momentum, Adam; learning rates and schedules |
-| H2 | `08B` | Training dynamics: initialization, vanishing and exploding gradients, batch normalization |
-| H3 | `08C` | Regularization for deep networks: dropout, weight decay, early stopping, data augmentation |
+| H1 | `08A` | Optimizers: SGD, momentum, Adam; learning rates, schedules and **warmup**; **AdamW — weight decay is not L2 under Adam**, and `08C` teaches weight decay, so the interaction is a live trap |
+| H2 | `08B` | Training dynamics: initialization, vanishing and exploding gradients, batch normalization, **layer normalization** (`11C`'s residual blocks are defined by it, and BN degrades at the small batch sizes expensive scientific data forces); **skip connections pointed forward to `10C` as the direct answer to vanishing gradients** |
+| H3 | `08C` | Regularization for deep networks: dropout, weight decay, early stopping, data augmentation. **Double descent.** **Hyperparameter practice for deep nets, stated as a conflict** with `02C`/`03C`. **Uncertainty**: temperature scaling, deep ensembles, MC dropout, conformal prediction named. **Run-to-run variance** — a single training run is a sample, not a measurement |
+
+> **`08C`'s double descent is not an extra; it repairs something.** `03B` teaches the bias–variance
+> U-curve and `02C` teaches it as the reason to hold data out. Class 8 then trains a model with more
+> parameters than data to near-zero training error and never says why `03B`'s law did not fire —
+> six weeks of a taught statement left standing without its exception. Forward-flag it from `07A`,
+> immediately after universal approximation.
+>
+> **`08C`'s uncertainty block discharges `03A` §8's promise** that deep networks are the
+> over-confident case, which no content row currently pays.
+>
+> **The hyperparameter item is a conflict, not an omission.** `02C` and `03C` teach k-fold CV and
+> `GridSearchCV` as *the* model-selection procedure; deep learning quietly abandons both for a
+> single validation split, random search and early stopping. Unsaid, students will run 5-fold CV on
+> a CNN and lose a week.
 
 #### Class 9 — Representation Learning: Autoencoders and Contrastive Learning `[wk 7 → 9]`
 | | Notebook | Content |
 |---|---|---|
 | H1 | `09A` | What a learned representation is; similarity measures; cosine distance; embedding spaces |
-| H2 | `09B` | **Autoencoders**: encoder, latent space, decoder; undercomplete and denoising; autoencoders versus PCA |
+| H2 | `09B` | **Autoencoders**: encoder, latent space, decoder; undercomplete and denoising; autoencoders versus PCA; **reconstruction error as an anomaly detector** — discharging `05C`'s promise, and the basis of model-independent new-physics searches |
 | H3 | `09C` | **Contrastive learning**: positive and negative pairs; embeddings; self-supervision |
 
 ### Part V — Modern Architectures (Classes 10–12)
@@ -216,26 +270,42 @@ The material is kept, unpublished, at `discarded/04A-Discarded-GiniVsEntropy.ipy
 #### Class 10 — Deep Learning for Images: Convolutional Neural Networks `[wk 10]`
 | | Notebook | Content |
 |---|---|---|
-| H1 | `10A` | Images as tensors; why fully connected layers fail on images; convolution |
+| H1 | `10A` | Images as tensors; why fully connected layers fail on images; convolution — **and that a convolution *is* the imposition of translation equivariance**, which is the `01A` §2.6 inductive-bias thread made concrete |
 | H2 | `10B` | Pooling; feature maps; receptive fields; what filters learn |
-| H3 | `10C` | Modern CNN architectures; transfer learning for images; microscopy, medical imaging, astronomy, materials |
+| H3 | `10C` | Modern CNN architectures **and residual connections**; **transfer learning, taught here and only here**; dense prediction and U-Net; Grad-CAM; microscopy, medical imaging, astronomy, materials |
 
 #### Class 11 — Sequence Models and Transformers `[wk 11]`
 | | Notebook | Content |
 |---|---|---|
-| H1 | `11A` | Sequential scientific data; **RNNs**, hidden states, vanishing gradients; **LSTM** and gating |
-| H2 | `11B` | **Attention** and self-attention; queries, keys, values; positional encoding |
-| H3 | `11C` | The **transformer** architecture; multi-head attention; residual stream; scaling |
+| H1 | `11A` | Sequential scientific data; **a persistence/ARMA baseline first, so the network has something to beat**; **RNNs**, hidden states, vanishing gradients, **gradient clipping**; **LSTM** and gating; **1D CNNs for sequences**, often the right answer for spectra and sensor traces and far cheaper |
+| H2 | `11B` | **Attention** and self-attention; queries, keys, values; positional encoding — **needed precisely because self-attention is permutation-equivariant**, without which the encoding reads as an arbitrary hack |
+| H3 | `11C` | The **transformer** architecture; multi-head attention; residual stream |
 
 #### Class 12 — Foundation Models, Transfer Learning, GNNs and Synthesis `[wk 12]`
 | | Notebook | Content |
 |---|---|---|
-| H1 | `12A` | Pretraining and fine-tuning; **transfer learning**; **foundation models**; multimodal learning |
-| H2 | `12B` | Graph-structured data; **graph neural networks**; **message passing**; molecules, materials, biological systems |
+| H1 | `12A` | Pretraining and fine-tuning; **foundation models**; multimodal learning; **scaling**; **tokens, vocabulary, embedding tables and the next-token objective** |
+| H2 | `12B` | Graph-structured data; **graph neural networks**; **message passing** *(a ~20-line layer in plain PyTorch — `torch-geometric` installs are slow and version-fragile on Colab)*; **graph convolutions**; molecules, materials, biological systems, interaction networks |
 | H3 | `12C` | Choosing a method for a data modality; course synthesis |
 
 **Course synthesis (12C):** tabular → trees and boosting · high-dimensional → PCA and manifold
 methods · images → CNNs · sequences → RNNs and transformers · graphs → GNNs.
+
+**`12C` is block 10, not a recap.** The modality map above is better than any of the reference texts
+offers — none of them closes with one — but it is a modality table, not a discovery framework. Four
+rows complete it, a slide each, all inside block 10's own title *AI for Scientific Discovery*:
+
+| If you have… | Reach for |
+|---|---|
+| a simulator you can query | a surrogate / emulator, and active learning |
+| small data needing error bars | a Gaussian process, or a deep ensemble |
+| a known symmetry | an equivariant architecture |
+| a wanted *equation*, not a prediction | symbolic regression — SINDy, PySR, AI Feynman |
+
+Plus one sentence on **extrapolation and domain shift** — `04A` taught that trees cannot
+extrapolate, deep networks cannot reliably either, and that governs whether a materials model can be
+trusted off its training chemistry — and one on **simulation-based / likelihood-free inference**,
+which is how much of HEP and cosmology now uses machine learning.
 
 > **Final exam — Week 13, covering all material** (per Appendix 4).
 
@@ -266,6 +336,89 @@ For correction at the next revision. None affect teaching.
 4. The **NTU2025 education initiatives** table has nothing selected.
 5. The Course Aims are written throughout in "AI for scientific applications" language, which
    sits oddly beneath a title of "Deep Learning with Python".
+
+---
+
+## Threads that run across classes
+
+Recorded so that a notebook written in Class 10 knows what Class 2 started, and so that a later
+reviewer does not read a deliberate arrangement as an omission.
+
+### Uncertainty — the one thread the course was missing
+
+No model in the original outline reported its own uncertainty, in a course whose own thesis
+(`02A` §6.1) is that *"regression here is parameter estimation"*. A physics MSc is expected to write
+$k = 24.9 \pm 0.4\ \mathrm{N/m}$. Three places now carry it, at rising cost:
+
+1. **`02A` §7.2.1** — `np.polyfit(..., cov=True)`, propagated to the spring constant. Built.
+2. **`05B`** — the Gaussian process posterior mean *is* kernel ridge regression, which `05B` already
+   plans; the only new object is the predictive variance. GPs are the dominant ML method in physics
+   and chemistry — interatomic potentials, Bayesian optimisation of experiments, simulation
+   emulators.
+3. **`08C`** — temperature scaling, deep ensembles, MC dropout, conformal prediction named. This is
+   what discharges `03A` §8's promise that deep networks are the over-confident case.
+
+### Equivariance and symmetry — one principle, three homes
+
+Not a block. `10A` (convolution is translation equivariance), `11B` (self-attention is permutation
+equivariant, which is *why* positional encoding exists) and `12B` (message passing is permutation
+equivariance on graphs, with SchNet / NequIP / MACE as the mandated payoff). Three architectures
+that otherwise look unrelated become one idea, and it extends `01A` §2.6's inductive-bias thread.
+
+### The flexibility dial
+
+Built five times — `02C`'s degree, `03B`, `03C`'s $\alpha$, `04A`'s depth and `ccp_alpha`, `04B`'s
+`max_features` — and it must not break at `05A`. See the note under Class 5.
+
+### Loss functions are inherited, deliberately
+
+Classes 7 onward never assign losses to networks: MSE comes from `02A`, cross-entropy from `02B` §5
+via the Bernoulli MLE, and softmax from `02B` §10.2. Prince spends a whole chapter on this; here it
+is a payoff on work already done. **This is a choice, not an oversight.** `07A`/`07C` still owe the
+statement that a classification network ends in a softmax layer.
+
+---
+
+## Ordering decisions that depart from the textbooks, and why they stay
+
+Recorded under Standard I.3 so that a later reviewer does not "fix" them.
+
+1. **Bias–variance arrives late**, after the U-curve that motivates it, rather than abstractly as in
+   ISLR ch. 2.
+2. **Regularization is motivated by bias–variance**, not by subset selection as in ISLR ch. 6. More
+   honest about what the penalty does.
+3. **Leakage gets a full hour, before any metric or penalty.** No textbook gives it that position;
+   it is the failure mode students actually hit.
+4. **Unsupervised before neural networks is forced, not convenient.** `09B` plans "autoencoders
+   versus PCA", which is impossible if PCA comes after Class 9.
+5. **Trees → SVM matches ISLR** (ch. 8 → ch. 9). Géron's SVM-first is book organisation; following
+   it would be worse, because `04A` §11.2 sets up kernels by showing a tree's staircase failing on a
+   circle.
+6. **`09C` is planned around a non-image modality** — spectra, light curves, sensor traces. The
+   canonical contrastive demonstration is SimCLR-style image augmentation, which needs Class 10.
+   The OBTL does not require images there, and non-image data suits this audience better.
+
+### Exclusions, named so they read as choices
+
+Keep excluding, and say so in `12C`: AdaBoost as a historical entry; SVM regression (`05B`'s kernel
+ridge regression is the better vehicle — *say so*); the representer theorem as a theorem, though the
+statement $f(x)=\sum_i \alpha_i k(x, x_i)$ is one line and is a Green's-function statement in a
+physicist's own language; spectral clustering; kernel PCA (one sentence — it is literally Class 5
+composed with Class 6); random projections; stacking; Isomap/LLE; BART; reinforcement learning.
+
+Two the outline was silent on rather than defending:
+
+- **Generative models — VAE, GAN, diffusion.** Excluded as a taught block; **named in `12C`**.
+  `09B`'s autoencoder is one sentence from a VAE, and diffusion is now the dominant generative
+  family in the physical sciences (lattice-field sampling, RFdiffusion, MatterGen). Otherwise
+  `12C`'s map has a hole where a quarter of modern deep learning sits.
+- **PINNs and neural operators — the biggest genuine absence for this audience**, and correctly
+  excluded as a block: an honest treatment needs 45–60 minutes and there is no free hour. None of
+  the reference texts covers them either, which is precisely where *standard DL textbook* and *DL
+  for physicists* diverge. Three cheap substitutes: a 15-minute demo in `07C` riding on its
+  autograd-with-respect-to-inputs item; **an advertised project track** — the project is 40% and
+  topics are due end of Week 4, so this costs zero contact hours and is where it belongs; and a
+  slide in `12C`.
 
 ---
 
@@ -330,3 +483,33 @@ note, not a failure, so forward references such as `02B`'s pointer to `03C` are 
 - Datasets loaded from URL or generated in-notebook, so nothing depends on local files
 - Every notebook must run top to bottom without error, and must validate against current
   `nbformat` so it opens in Colab
+- **Anything that trains must reach a visible result in roughly one to two minutes on a free Colab
+  runtime.** This is a design constraint, not a discovery to be made during authoring: it dictates
+  the dataset for the CNN in Class 10 (FashionMNIST or a CIFAR-10 subset), for the transformer in
+  Class 11 (a small character-level corpus) and for the GNN in Class 12 (a QM9 subset), and it
+  constrains what those classes can claim to have demonstrated.
+- **`07C`'s training loop is a reusable template.** Classes 8 to 12 use it verbatim rather than
+  writing their own. It is an API in the same sense as the section numbers below.
+
+---
+
+## Open, for Marco
+
+Two decisions worth taking explicitly before `07A` is drafted, because no later trim recovers them.
+
+**1. Competence or literacy, per class.** The Class 7–12 material maps to roughly sixty numbered
+D2L sections in eighteen contact hours — about three times D2L's own pace. A defensible split:
+Classes 7–8 competence · Class 9 competence · Class 10 competence on transfer learning, literacy on
+architectures · Classes 11–12 literacy. Writing it down also protects the Week 13 exam from asking
+Class 11 questions the hours could not support.
+
+**2. Classes 7–12 should be written at a lower density than Classes 1–4.** `Analysis/Timing.md`
+records the mechanism: *notebooks acquire minutes during review rounds, because review adds
+explanation and almost never removes any.* Classes 1 and 2 are already over budget by that route.
+
+On length generally: the current plan is to build each class fully and then prune by **marking
+sections optional**, as `03A` §§8–9 and `04A` §§3.2, 4.1 already do, rather than by writing thin.
+Class 11 is the densest hour in the course — `11A` alone is roughly forty pages of D2L — and is the
+first place that pruning should look. Two content-neutral recoveries are already made above:
+scaling moved from `11C` to `12A`, where it belongs as a foundation-model fact, and transfer
+learning taught once in `10C` rather than twice.
