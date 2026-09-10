@@ -424,14 +424,52 @@ Two the outline was silent on rather than defending:
 
 ## Recurring notebook conventions
 
-- Header block with course code, class/notebook/hour, instructor and contact details
-- **Learning objectives** cell opening each notebook
-- Numbered sections with `#` / `##` headings
-- Inline mini-exercises in `<div class="alert alert-success">` boxes
-- `STUDENT WORKSPACE` code cells following each exercise
-- Matplotlib-drawn conceptual figures rather than external images
-- **Key takeaways** and **Optional preparation for the next notebook** closing cells
+In order, top to bottom. A **method** notebook has all of these; a **concept** notebook (`02C`,
+`03A`, `03B`) omits the two marked ★.
+
+1. Header block with course code, class/notebook/hour, instructor and contact details
+2. **Learning Objectives** cell
+3. ★ **Where this sits in the framework** — a four-row table naming this method's *model*, *loss*,
+   *training* and *evaluation*, cross-referencing `02A` §2 by number, plus a sentence on what is
+   unusual about this instantiation
+4. Numbered sections with `#` / `##` headings; section numbers are an API (see below)
+5. Inline mini-exercises in `<div class="alert alert-success">` boxes, each followed by a
+   `STUDENT WORKSPACE` code cell, and with a self-check anchor rather than a solution
+6. Matplotlib-drawn figures rather than external images; figure code is not explained but is
+   labelled as not requiring explanation
+7. **When this is the wrong tool** — the honest-limits section
+8. **Common pitfalls**
+9. ★ **Applying this to your own data** — the seven-step procedure, **as runnable code with stored
+   output**, closing with a "what to deliver" block. See below.
+10. **Final exercises**
+11. **Key Takeaways**
+12. **Optional preparation for the next notebook** — or *next class*, in the last notebook of a class
 - Recurring prompts on using an LLM to write and check scientific code
+
+### The closing procedure
+
+Every method notebook ends with the same seven steps, and **only step 4 changes between methods**.
+That invariance is the transferable thing: the shape of a competent analysis does not depend on the
+model. `03C` §8 is the canonical form and `04A` §13 is the second instance.
+
+1. **Split first** — nothing above that line has seen the test set (`02C` §6). Stratify for
+   classification.
+2. **Preprocessing and model in one pipeline**, so preprocessing refits inside every fold
+   (`02C` §6.3). Scaling is required for anything penalised or distance-based and **pointless for
+   trees and forests** (`04A` §11.1) — say which case applies and why.
+3. **A baseline** — `DummyRegressor` / `DummyClassifier` — so the final number has something to beat.
+4. **Tune the flexibility dial by cross-validation, on the training set only.** The only block that
+   varies. Name what is tuned and what deliberately is not.
+5. **Report the cross-validated score with its spread across folds** — and call it the spread.
+   Do **not** write `± std/√k`: the folds share training data, so they are correlated and that is
+   not a standard error.
+6. **Touch the test set once**, at the end (`02C` §5).
+7. **Put an error bar on the test score by bootstrapping the test set** — a percentile interval. For
+   a proportion, $\sqrt{p(1-p)/n}$ is the closed-form cross-check and the two should agree.
+
+**`02A` §12 and `02B` §12 are forward pointers rather than procedures**, because splitting,
+pipelines and `GridSearchCV` are not taught until `02C` and `03C`. They name what their method
+contributes to step 4 and send the reader to `03C` §8.
 
 ### Cells that must ship without output
 
