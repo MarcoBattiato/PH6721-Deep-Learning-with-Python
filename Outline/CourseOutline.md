@@ -429,9 +429,9 @@ In order, top to bottom. A **method** notebook has all of these; a **concept** n
 
 1. Header block with course code, class/notebook/hour, instructor and contact details
 2. **Learning Objectives** cell
-3. ★ **Where this sits in the framework** — a four-row table naming this method's *model*, *loss*,
-   *training* and *evaluation*, cross-referencing `02A` §2 by number, plus a sentence on what is
-   unusual about this instantiation
+3. **Where this sits in the pipeline** — the ten-step map of `01A` §6, drawn by `pipeline_map.py`
+   with this notebook's steps picked out, and closing with a line naming the **step worth
+   remembering**. Concept notebooks carry it too: a pipeline step *is* their subject. See below.
 4. Numbered sections with `#` / `##` headings; section numbers are an API (see below)
 5. Inline mini-exercises in `<div class="alert alert-success">` boxes, each followed by a
    `STUDENT WORKSPACE` code cell, and with a self-check anchor rather than a solution
@@ -446,11 +446,36 @@ In order, top to bottom. A **method** notebook has all of these; a **concept** n
 12. **Optional preparation for the next notebook** — or *next class*, in the last notebook of a class
 - Recurring prompts on using an LLM to write and check scientific code
 
+### The pipeline map
+
+`01A` §6 sets out the ten steps of a supervised project and draws them; every notebook from `02A`
+onwards redraws the same figure with its own steps highlighted, so what a new method changes is
+visible before any of it is explained. `pipeline_map.py` at the repository root is the single
+source of truth for the step and sub-step labels, which are **fixed course vocabulary and identical
+in every notebook** — per-notebook commentary goes in the `notes` argument, never in a relabelled
+box. If a label seems wrong for a method, that is a finding to report, not to patch locally.
+
+The notebook cell fetches the module from the repository when it is not alongside, because Colab
+has no copy of the repository. It is the first code cell in every notebook, so every map renders
+under the same default settings.
+
+Two invariants, the second enforced by `tools/check_pipeline_states.py`:
+
+- Nomenclature follows the literature and is not to be "simplified": *model selection* (validation)
+  and *model assessment* (test) are ESL §7.2's terms; *data snooping* is Géron's.
+- **A box any notebook has filled cannot be drawn as "a later class" afterwards.** Re-filling a box
+  is fine — `02B` and `04A` both put something new in *the model family* — so only the backwards
+  claim is an error. The checker found 24 of them the first time it ran.
+
 ### The closing procedure
 
 Every method notebook ends with the same seven steps, and **only step 4 changes between methods**.
 That invariance is the transferable thing: the shape of a competent analysis does not depend on the
 model. `03C` §8 is the canonical form and `04A` §13 is the second instance.
+
+These seven are the *cell's* steps, not the map's ten, and each carries a `(map step N)` label so
+the two cannot be confused. Between them they execute map steps 2, 5, 6, 8 and 9; map steps 1, 3
+and 4 happen before the cell, and map step 10 is the *What to deliver* block that closes it.
 
 1. **Split first** — nothing above that line has seen the test set (`02C` §6). Stratify for
    classification.
