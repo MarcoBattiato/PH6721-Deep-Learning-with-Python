@@ -43,3 +43,6 @@ discarded/
 
 # Fetched by the pipeline-map cell when a notebook is run from its own folder.
 Classes/*/pipeline_map.py
+
+# Scratch notebooks written into the repo root while executing single cells.
+tmp*.ipynb
