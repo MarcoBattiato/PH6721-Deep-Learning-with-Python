@@ -40,3 +40,6 @@ tools/
 
 # Material cut from a class, kept for reference only. Not for students.
 discarded/
+
+# Fetched by the pipeline-map cell when a notebook is run from its own folder.
+Classes/*/pipeline_map.py
