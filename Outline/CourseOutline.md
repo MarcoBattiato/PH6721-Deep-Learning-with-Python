@@ -462,7 +462,11 @@ under the same default settings.
 Two invariants, the second enforced by `tools/check_pipeline_states.py`:
 
 - Nomenclature follows the literature and is not to be "simplified": *model selection* (validation)
-  and *model assessment* (test) are ESL §7.2's terms; *data snooping* is Géron's.
+  and *model assessment* (test) are ESL ch. 7's terms — the chapter is titled *Model Assessment and
+  Selection* and separates the two goals explicitly; *data snooping* is Géron's, ch. 2, where the
+  instruction is to create a test set, put it aside and never look at it.
+  (The brief said ESL §7.2. The distinction is certainly chapter 7's; the subsection could not be
+  confirmed without the book, so the citation is to the chapter.)
 - **A box any notebook has filled cannot be drawn as "a later class" afterwards.** Re-filling a box
   is fine — `02B` and `04A` both put something new in *the model family* — so only the backwards
   claim is an error. The checker found 24 of them the first time it ran.
