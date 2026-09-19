@@ -465,7 +465,9 @@ in every notebook** — per-notebook commentary goes in the `notes` argument, ne
 box. If a label seems wrong for a method, that is a finding to report, not to patch locally.
 
 The notebook cell fetches the module from the repository when it is not alongside, because Colab
-has no copy of the repository. It is the first code cell in every notebook, so every map renders
+has no copy of the repository. The figure is kept under **1000 pixels tall**, because Colab puts any
+taller output in a scroll box; its box heights are derived from its font sizes, so that limit
+holds without text escaping a box. It is the first code cell in every notebook, so every map renders
 under the same default settings.
 
 Two invariants, the second enforced by `tools/check_pipeline_states.py`:

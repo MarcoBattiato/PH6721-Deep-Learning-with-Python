@@ -57,7 +57,22 @@ INK, GREY, FAINT = "#1B2430", "#5A646F", "#C9CED5"
 _RANK = {"next": 0, "done": 1, "part": 2, "now": 3}
 
 GUT, X, W = 0.42, 2.75, 7.9          # spine x, content x, content width
-H1, H2, VGAP, SGAP = 0.50, 0.74, 0.11, 0.40   # box heights (plain / with note)
+VGAP, SGAP = 0.10, 0.30                # gap between boxes / between steps
+
+# Vertical geometry is derived from the font sizes, so boxes fit their text at any
+# scale. IN_PER_UNIT keeps the whole map under Colab's 1000-pixel output height.
+IN_PER_UNIT = 0.40
+PT = 1 / (IN_PER_UNIT * 72)            # one typographic point, in data units
+LABEL_FS, NOTE_FS = 8.3, 7.1
+PAD = 2.5 * PT
+LABEL_H = LABEL_FS * 1.18 * PT
+NOTE_LINE = NOTE_FS * 1.18 * PT
+H1 = LABEL_H + 2 * PAD                 # a box with a label only
+
+
+def _note_h(lines):
+    """Height of a box holding a label and a note of this many lines."""
+    return 2 * PAD + LABEL_H + 1.0 * PT + lines * NOTE_LINE
 
 
 def _state(st, s, k=None):
@@ -80,7 +95,7 @@ def _h(s, notes):
         wide = W if len(keys) == 1 else (W - 0.11 * (len(keys) - 1)) / len(keys)
         lines = max(textwrap.fill(n, max(14, int(wide / 0.058))).count("\n") + 1
                     for n in ns)
-        return H2 + 0.17 * (lines - 1)
+        return _note_h(lines)
     if s["mode"] in ("seq", "loop"):
         tot = sum(rowh([f"{s['n']}.{i+1}"]) for i in range(len(s["subs"])))
         tot += VGAP * (len(s["subs"]) - 1)
@@ -105,16 +120,15 @@ def _box(ax, x, y, w, h, label, kind, note=None):
     if note:
         wrapped = textwrap.fill(note, max(14, int(w / 0.058)))
         nl = wrapped.count("\n") + 1
-        fs = 7.6 if nl < 3 else 6.9
-        ax.text(x + w / 2, y + h * (0.70 if nl == 1 else 0.74), label,
-                ha="center", va="center", fontsize=8.6, color=ink,
+        ax.text(x + w / 2, y + h - PAD - LABEL_H / 2, label,
+                ha="center", va="center", fontsize=LABEL_FS, color=ink,
                 fontweight="bold", zorder=4)
-        ax.text(x + w / 2, y + h * (0.27 if nl == 1 else 0.24), wrapped,
-                ha="center", va="center", fontsize=fs, color=ink, alpha=0.88,
+        ax.text(x + w / 2, y + PAD + nl * NOTE_LINE / 2, wrapped,
+                ha="center", va="center", fontsize=NOTE_FS, color=ink, alpha=0.88,
                 style="italic", zorder=4, linespacing=1.18)
     else:
         ax.text(x + w / 2, y + h / 2, label, ha="center", va="center",
-                fontsize=8.6, color=ink, fontweight="bold", zorder=4)
+                fontsize=LABEL_FS, color=ink, fontweight="bold", zorder=4)
 
 
 def pipeline_map(state=None, notes=None, title="", lead=None, ax=None):
@@ -122,7 +136,9 @@ def pipeline_map(state=None, notes=None, title="", lead=None, ax=None):
     heights = [_h(s, nt) for s in STEPS]
     H = sum(heights)
     if ax is None:
-        _, ax = plt.subplots(figsize=(11.2, 0.62 * H + 1.9))
+        # Height is kept under Colab's 1000-pixel output limit, and dpi is fixed so the notebook's
+        # own settings cannot enlarge it past that.
+        _, ax = plt.subplots(figsize=(11.2, IN_PER_UNIT * (H + 2.47) + 0.55), dpi=100)
 
     ax.plot([GUT, GUT], [0.30, H - 0.34], color="#E3E7EC", lw=2.4, zorder=0,
             solid_capstyle="round")
@@ -139,8 +155,8 @@ def pipeline_map(state=None, notes=None, title="", lead=None, ax=None):
             if not ns:
                 return H1
             wide = W if len(keys) == 1 else (W - 0.11 * (len(keys) - 1)) / len(keys)
-            return H2 + 0.17 * (max(textwrap.fill(n, max(14, int(wide / 0.058)))
-                                    .count("\n") + 1 for n in ns) - 1)
+            return _note_h(max(textwrap.fill(n, max(14, int(wide / 0.058)))
+                               .count("\n") + 1 for n in ns))
 
         y = blk_top - _rh([f"{s['n']}.{i+1}" for i in range(len(s["subs"]))]
                           if s["mode"] not in ("seq", "loop") else [f"{s['n']}.1"])
