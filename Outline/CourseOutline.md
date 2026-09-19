@@ -186,7 +186,7 @@ The material is kept, unpublished, at `discarded/04A-Discarded-GiniVsEntropy.ipy
 > student with a *ranking* and no way to ask **how** a feature acts. That is what partial dependence
 > is for, and it is one call.
 
-**Status: `04A` and `04B` built.**
+**Status: `04A`, `04B` and `04C` built.**
 
 #### Class 5 — Support Vector Machines, Kernel Methods and Clustering `[wk 5]`
 | | Notebook | Content |
