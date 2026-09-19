@@ -344,13 +344,22 @@ For correction at the next revision. None affect teaching.
 Recorded so that a notebook written in Class 10 knows what Class 2 started, and so that a later
 reviewer does not read a deliberate arrangement as an omission.
 
-### Uncertainty — the one thread the course was missing
+### Uncertainty — on performance and on predictions, not on parameters
 
-No model in the original outline reported its own uncertainty, in a course whose own thesis
-(`02A` §6.1) is that *"regression here is parameter estimation"*. A physics MSc is expected to write
-$k = 24.9 \pm 0.4\ \mathrm{N/m}$. Three places now carry it, at rising cost:
+**Parameter uncertainty is deliberately not taught** (Marco, 2026-09-19). `02A` §7.2.1 briefly
+reported the spring constant with an error bar from `np.polyfit(..., cov=True)`; it was removed.
+Three reasons: this is a deep-learning course, and the background it builds should be the one deep
+learning uses; in the ML literature error bars go on *performance* and *predictions* — ISLR and ESL
+give coefficient standard errors for linear and logistic regression, while Géron, Goodfellow et
+al., Prince and D2L do not, and scikit-learn does not even compute them (Breiman's *two cultures*);
+and they stop meaning anything after Class 2 — penalised coefficients are deliberately biased,
+tree and network parameters are not interpretable quantities. The standard error is also valid only
+if the model is right, since the residuals stand in for the unknown noise.
 
-1. **`02A` §7.2.1** — `np.polyfit(..., cov=True)`, propagated to the spring constant. Built.
+Where uncertainty *is* carried, at rising cost:
+
+1. **The closing procedure, from `03C` §8** — a bootstrap interval on the test score, for every
+   method and every metric. Built.
 2. **`05B`** — the Gaussian process posterior mean *is* kernel ridge regression, which `05B` already
    plans; the only new object is the predictive variance. GPs are the dominant ML method in physics
    and chemistry — interatomic potentials, Bayesian optimisation of experiments, simulation
