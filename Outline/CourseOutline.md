@@ -212,6 +212,8 @@ The material is kept, unpublished, at `discarded/04A-Discarded-GiniVsEntropy.ipy
 > — so it arrives as a variation on `02B` and `03C` rather than as a new machine. That also
 > discharges `03A` §8's promise about SVM scores in the same figure.
 
+**Status: `05A` built.**
+
 > **Midterm — Week 6, covering Classes 1–5** (per Appendix 2).
 
 ### Part III — Dimensionality Reduction (Class 6)
