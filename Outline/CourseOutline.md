@@ -234,6 +234,14 @@ The material is kept, unpublished, at `discarded/04A-Discarded-GiniVsEntropy.ipy
 | H2 | `07B` | Loss surfaces; gradient descent (and why badly scaled features make it slow); **backpropagation**; the chain rule and computational graphs |
 | H3 | `07C` | PyTorch: tensors, autograd, modules; **`Dataset`/`DataLoader`, mini-batching, device placement**; a first network trained end to end. **Autograd differentiates with respect to *inputs* too** — forces from an energy model, sensitivity, differentiable simulation |
 
+> **`07B` has a possible source, and is not obliged to use it.** Marco's PH6701 computational
+> laboratory (`github.com/MarcoBattiato/PH6701-Computational-Laboratories`, `deep-neural-network`)
+> builds a network in NumPy with every gradient derived by hand and checked against a finite
+> difference — which is the register this course uses for boosting in `04C` §2 and least squares in
+> `02A` §5. It is offered, not prescribed: use it only where it fits the notebook `07B` needs, and
+> note that it carries no train/test discipline, prints its own solutions, and uses the alert
+> colours with the opposite meanings. See `Analysis/Source-PH6701-DeepNetworkLab.md`.
+
 > `07C`'s training loop is an **API**, in the same sense the section numbers are: Classes 8 to 12
 > reuse it verbatim. Mini-batching is a prerequisite for `08A`'s SGD and momentum, and device
 > placement is a prerequisite for anything in Classes 10 to 12 running on Colab at all. It is
