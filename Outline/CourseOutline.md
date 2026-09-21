@@ -347,25 +347,38 @@ For correction at the next revision. None affect teaching.
 5. The Course Aims are written throughout in "AI for scientific applications" language, which
    sits oddly beneath a title of "Deep Learning with Python".
 
-### Part VI — Extra material, not lectured
+### Part VI — Material outside the lectures
 
-Two notebooks written for students who will apply this material outside a physics lab, where most
-of the candidate features are noise and the rows cannot be shuffled. **Neither is lectured and
-neither is examinable.** They exist because the course raises a problem it does not solve: `05A`
-§7.1 measures what useless features do to a distance, `03C` §4 teaches only the embedded route to
-selection, and `04B` §7 demolishes importance rankings without offering a successor.
+Notebooks that are not delivered in class carry **their own numbering**, deliberately unlike the
+`NNx` of the taught hours, so that no student has to wonder which week they belong to. Two prefixes,
+because "not lectured" covers two different expectations:
 
-| | Notebook | Content |
+| Prefix | What it means | Assumed by later notebooks? |
 |---|---|---|
-| — | `13A` | **Feature selection when most features are useless**: the winner's curse and its $\sqrt{2\ln p/n}$ scale; selection as part of the model, and nested cross-validation; filter, wrapper (SVM-RFE) and embedded families compared on data with known truth; **stability selection**; what correlated groups do to all of it; what to report |
-| — | `13B` | **Validation when time and trials are against you**: why a random split reports $R^2 = +0.20$ on a series with no signal; the one case where k-fold is defensible on a time series; **purging and embargo**; walk-forward; **the number of trials** and the deflated Sharpe ratio; non-stationarity, refitting, and step 10's monitoring box |
+| `S1`, `S2`, … | **Supplement** — expected reading, attached to a class but not lectured | yes |
+| `X1`, `X2`, … | **Extra** — genuinely optional, a broader background for students who want it | never |
 
-> **Discovery is by pointer, not by appendix.** Each is linked from the place that raises its
-> problem: `02C` §6.4 → `13B`; `03C` §4, `04B` §7.2 and `05A` §7.1 → `13A`. The examples are written
-> in the language of finance because that is where both problems appear at full strength at once;
-> the methods are the course's own, applied where its assumptions fail.
+`00A` and `00B` keep their own numbers: they are pre-course self-study and predate the scheme.
+Nothing with an `S` or `X` number is examinable unless the OBTL says otherwise, and no `X` notebook
+is ever a prerequisite for a taught hour.
 
----
+**Where each one sits.** This is the map a student needs, since the numbering deliberately does not
+say it:
+
+| | Read it after | It uses | Content |
+|---|---|---|---|
+| `X1` | **Class 5** | cross-validation and pipelines (`02C`), lasso (`03C` §4), importance (`04B` §7), the distance argument (`05A` §4.2) | **Feature selection when most features are useless**: the winner's curse and its $\sqrt{2\ln p/n}$ scale; selection as part of the model, and nested cross-validation; filter, wrapper (SVM-RFE) and embedded compared on data with known truth; **stability selection**; what correlated groups do to all of it |
+| `X2` | **Class 5**, after `X1` | leakage and `TimeSeriesSplit` (`02C` §6), the ensembles of Class 4 | **Validation when time and trials are against you**: why a random split reports $R^2 = +0.20$ on a series with no signal; the one case where k-fold is defensible on a time series; **purging and embargo**; walk-forward; **the number of trials**; non-stationarity and step 10's monitoring box |
+
+> **Why they exist.** The course raises a problem it does not solve: `05A` §4.2 measures what useless
+> features do to a distance, `03C` §4 teaches only the embedded route to selection, and `04B` §7
+> demolishes importance rankings without offering a successor. Both notebooks are written in the
+> language of finance, because that is where low signal-to-noise, hundreds of candidate features and
+> a fixed arrow of time appear together — but every method in them is the course's own, applied
+> where its assumptions fail.
+>
+> **Discovery is by pointer, not by appendix**: `02C` §6.4 → `X2`; `03C` §4, `04B` §7.2 and
+> `05A` §4.2 → `X1`.
 
 ---
 
