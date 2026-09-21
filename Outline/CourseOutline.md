@@ -347,6 +347,26 @@ For correction at the next revision. None affect teaching.
 5. The Course Aims are written throughout in "AI for scientific applications" language, which
    sits oddly beneath a title of "Deep Learning with Python".
 
+### Part VI — Extra material, not lectured
+
+Two notebooks written for students who will apply this material outside a physics lab, where most
+of the candidate features are noise and the rows cannot be shuffled. **Neither is lectured and
+neither is examinable.** They exist because the course raises a problem it does not solve: `05A`
+§7.1 measures what useless features do to a distance, `03C` §4 teaches only the embedded route to
+selection, and `04B` §7 demolishes importance rankings without offering a successor.
+
+| | Notebook | Content |
+|---|---|---|
+| — | `13A` | **Feature selection when most features are useless**: the winner's curse and its $\sqrt{2\ln p/n}$ scale; selection as part of the model, and nested cross-validation; filter, wrapper (SVM-RFE) and embedded families compared on data with known truth; **stability selection**; what correlated groups do to all of it; what to report |
+| — | `13B` | **Validation when time and trials are against you**: why a random split reports $R^2 = +0.20$ on a series with no signal; the one case where k-fold is defensible on a time series; **purging and embargo**; walk-forward; **the number of trials** and the deflated Sharpe ratio; non-stationarity, refitting, and step 10's monitoring box |
+
+> **Discovery is by pointer, not by appendix.** Each is linked from the place that raises its
+> problem: `02C` §6.4 → `13B`; `03C` §4, `04B` §7.2 and `05A` §7.1 → `13A`. The examples are written
+> in the language of finance because that is where both problems appear at full strength at once;
+> the methods are the course's own, applied where its assumptions fail.
+
+---
+
 ---
 
 ## Threads that run across classes
