@@ -46,3 +46,6 @@ Classes/*/pipeline_map.py
 
 # Scratch notebooks written into the repo root while executing single cells.
 tmp*.ipynb
+
+# Working instructions for AI assistants — local only
+CLAUDE.md
