@@ -155,7 +155,7 @@ no difference in what you can do.
 
 **Something in a notebook looks wrong.**
 Please tell me — errors, typos, cells that will not run. Email
-<marco.battiato.teaching@gmail.com> with the notebook name and which section. Corrections go up on
+<marco.battiato@ntu.edu.sg> with the notebook name and which section. Corrections go up on
 the course page and you get them automatically next time you open it.
 
 ---
@@ -172,4 +172,4 @@ unsaved work — see *Keeping your work* above.
 
 ---
 
-PH6721 Deep Learning with Python · Marco Battiato · <marco.battiato.teaching@gmail.com>
+PH6721 Deep Learning with Python · Marco Battiato · <marco.battiato@ntu.edu.sg>

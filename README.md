@@ -3,7 +3,7 @@
 Course materials for **PH6721**, Nanyang Technological University, School of Physical and
 Mathematical Sciences. Trimester 2, AY2026-2027. 12 classes × 3 hours.
 
-**Instructor:** Marco Battiato — marco.battiato.teaching@gmail.com
+**Instructor:** Marco Battiato — marco.battiato@ntu.edu.sg
 
 ---
 
